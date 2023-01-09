@@ -6,11 +6,29 @@ function MovingObject (obj){
     this.color = obj.color;
 }
 
-// const mo = new MovingObject({
-//     pos: [30, 30],
-//     vel: [10, 10],
-//     radius: 5,
-//     color: "#00FF00"
-// });
+MovingObject.prototype.draw = function(ctx) {
+    ctx.fillStyle = this.color;
+    
+    ctx.beginPath();
+    
+    ctx.arc(
+        this.pos[0],
+        this.pos[1],
+        this.radius,
+        0,
+        2 * Math.PI,
+        false
+    );
+
+    ctx.fill();
+}
+
+// may need to pass in context here?
+MovingObject.prototype.move = function() {
+    const var1 = this.pos[0] + this.vel[0];
+    const var2 = this.pos[1] + this.vel[1];
+
+    this.pos = [var1, var2];
+}
 
 module.exports = MovingObject;
